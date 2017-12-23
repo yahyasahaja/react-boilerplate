@@ -4,6 +4,7 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import morgan from 'morgan'
 import path from 'path'
+import compression from 'compression'
 import {
   LOG_MODE
 } from './config'
@@ -37,6 +38,9 @@ app.use('/api', api)
 
 //STATIC
 app.use(express.static('./public'))
+
+//COMPRESSION
+app.use(compression())
 
 //REACT
 app.get('*', (req, res) => {
