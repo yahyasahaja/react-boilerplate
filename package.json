@@ -8,7 +8,7 @@
     "dev-server": "nodemon src/server/index.js --exec babel-node",
     "dev-client": "webpack --progress --color --watch",
     "build": "babel src/server -d dist && webpack -p",
-    "start": "node ./dist/index.js"
+    "start": "node server"
   },
   "repository": {
     "type": "git",
