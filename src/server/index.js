@@ -58,6 +58,8 @@ app.use((err, req, res, next) => {
 
 //LISTEN TO PORT
 events.on(DB_CONNECTED, () => {
-  app.listen(port, () => console.log(`Server running at port ${port}`))
+  console.log('db connected')
 })
 events.emit(DB_CONNECTED)
+app.listen(port, () => console.log(`Server running at port ${port}`))
+console.log('app is listening')

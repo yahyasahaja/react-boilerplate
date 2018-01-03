@@ -67,7 +67,6 @@ app.use((0, _compression2.default)());
 //REACT
 app.get('*', function (req, res) {
   res.sendFile(_path2.default.resolve('./public/index.html'));
-  console.log(_path2.default.resolve('./public/index.html'))
 });
 
 //ERROR_HANDLER
@@ -81,8 +80,10 @@ app.use(function (err, req, res, next) {
 
 //LISTEN TO PORT
 _events.events.on(_events.DB_CONNECTED, function () {
-  app.listen(port, function () {
-    return console.log('Server running at port ' + port);
-  });
+  console.log('db connected');
 });
 _events.events.emit(_events.DB_CONNECTED);
+app.listen(port, function () {
+  return console.log('Server running at port ' + port);
+});
+console.log('app is listening');
