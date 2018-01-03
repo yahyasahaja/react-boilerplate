@@ -37,7 +37,7 @@ var app = (0, _express2.default)();
 // @flow
 //MODULES
 
-var port = process.env.NODE_ENV || 3000;
+var port = process.env.PORT || 3000;
 
 //CONFIG
 app.use(function (req, res, next) {
@@ -80,10 +80,8 @@ app.use(function (err, req, res, next) {
 
 //LISTEN TO PORT
 _events.events.on(_events.DB_CONNECTED, function () {
-  console.log('db connected');
+  app.listen(port, function () {
+    return console.log('Server running at port ' + port);
+  });
 });
 _events.events.emit(_events.DB_CONNECTED);
-app.listen(port, function () {
-  return console.log('Server running at port ' + port);
-});
-console.log('app is listening');

@@ -14,7 +14,7 @@ import { events, DB_CONNECTED } from './events'
  
 //FIRST_CONFIG
 const app = express()
-const port = process.env.NODE_ENV || 3000
+const port = process.env.PORT || 3000
 
 //CONFIG
 app.use((req, res, next) => {
@@ -58,8 +58,6 @@ app.use((err, req, res, next) => {
 
 //LISTEN TO PORT
 events.on(DB_CONNECTED, () => {
-  console.log('db connected')
+  app.listen(port, () => console.log(`Server running at port ${port}`))
 })
 events.emit(DB_CONNECTED)
-app.listen(port, () => console.log(`Server running at port ${port}`))
-console.log('app is listening')
