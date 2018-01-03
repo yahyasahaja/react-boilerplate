@@ -1,30 +1,64 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>React App</title>
-        <meta charset="utf-8">
-        <meta name="description" content="React Starter Pack">
-        <meta name="keywords" content="Some, Keywords, To, Share">
-        <meta name="authors" content="Yahya Sahaja">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
-        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        
-        <!-- jQuery library -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        
-        <link rel="stylesheet" type="text/css" href="/css/style.css">
+<head>
+  <title>React App</title>
+  <meta charset="utf-8">
+  <meta name="description" content="React Starter Pack">
+  <meta name="keywords" content="Some, Keywords, To, Share">
+  <meta name="authors" content="Yahya Sahaja">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-        <script>
-            var win = $(window);
-            var updateToken = null;
-        </script>
-    </head>
+  <link rel="shortcut icon" href="favicon.ico">
+  <!-- Add manifest -->
+  <link rel="manifest" href="/manifest.json">
+  <!-- Tell the browser it's a PWA -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <!-- Tell iOS it's a PWA -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <!-- Make sure theme-color is defined -->
+  <meta name="theme-color" content="#536878">
 
-    <body>
-        <div id="app"></div>
-        <script src="/app.bundle.js"></script>
-    </body>
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+
+  <script>
+    var win = $(window);
+    var updateToken = null;
+  </script>
+</head>
+
+<body>
+  <div id="app">
+    <div class="App">
+    <div class="App-header">
+      <h2>Home</h2>
+    </div>
+    <p class="App-intro">
+      Loading site...
+    </p>
+  </div>
+  <script src="/app.bundle.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('/service-worker.js').then(function (registration) {
+          // Registration was successful
+          console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        }, function (err) {
+          // registration failed :(
+          console.log('ServiceWorker registration failed: ', err);
+        }).catch(function (err) {
+          console.log(err)
+        });
+      });
+    } else {
+      console.log('service worker is not supported');
+    }
+  </script>
+</body>
+
 </html>
