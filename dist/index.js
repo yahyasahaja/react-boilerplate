@@ -40,6 +40,15 @@ var app = (0, _express2.default)();
 var port = process.env.PORT || 3000;
 
 //CONFIG
+if (process.env.NODE_ENV === 'production') {
+  app.use(function (req, res, next) {
+    if (req.headers['x-forwarded-proto'] !== 'https') {
+      return res.redirect(['https://', req.get('Host'), req.url].join(''));
+    }
+    return next();
+  });
+}
+
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET,POST,OPTIONS,DELETE,PUT');
