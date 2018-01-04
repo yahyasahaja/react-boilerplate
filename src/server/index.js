@@ -45,11 +45,11 @@ app.use(bodyParser.urlencoded({extended: true}))
 import api from './router/api'
 app.use('/api', api)
 
-//STATIC
-app.use(express.static('./public'))
-
 //COMPRESSION
 app.use(compression())
+
+//STATIC
+app.use(express.static('./public'))
 
 //REACT
 app.get('*', (req, res) => {

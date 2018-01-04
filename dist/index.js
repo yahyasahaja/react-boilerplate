@@ -67,11 +67,11 @@ app.use(_bodyParser2.default.urlencoded({ extended: true }));
 
 app.use('/api', _api2.default);
 
-//STATIC
-app.use(_express2.default.static('./public'));
-
 //COMPRESSION
 app.use((0, _compression2.default)());
+
+//STATIC
+app.use(_express2.default.static('./public'));
 
 //REACT
 app.get('*', function (req, res) {
