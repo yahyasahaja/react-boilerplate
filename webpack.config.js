@@ -1,13 +1,14 @@
-var path = require('path')
+const path = require('path')
 const webpack = require('webpack')
-var CompressionPlugin = require('compression-webpack-plugin')
+const CompressionPlugin = require('compression-webpack-plugin')
+// const OfflinePlugin = require('offline-plugin');
 
 module.exports = {
   entry: {
     app: './src/client/App.js',
   },
   output: {
-    path: path.join(__dirname, 'public'),
+    path: path.resolve('public'),
     filename: '[name].bundle.js'
   },
   resolve: {
@@ -27,7 +28,7 @@ module.exports = {
         },
       },
       {
-        test: /(\.scss|\.css)$/,
+        test: /(\.scss)$/,
         use: [
           'style-loader',
           {
@@ -43,9 +44,22 @@ module.exports = {
           'sass-loader',
         ]
       },
-    ]
+    ],
   },
   plugins: [
+    // new OfflinePlugin({
+    //   safeToUseOptionalCaches: true,
+    //   caches: 'all',
+    //   ServiceWorker: {
+    //     events: true
+    //   },
+    //   AppCache: {
+    //     events: true
+    //   },
+    //   externals: [
+    //     'index.html',
+    //   ]
+    // }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')
     }),
