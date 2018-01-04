@@ -31,7 +31,7 @@ self.addEventListener('install', function (event) {
           const urlsToCache = [
             '/',
             '/index.html',
-            '/manifest.html',
+            '/manifest.json',
             '/favicon.ico',
             '/app.bundle.js',
             '/css/style.css',
