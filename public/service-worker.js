@@ -38,7 +38,6 @@ self.addEventListener('install', function (event) {
             '/font/MuseoSans-500.otf',
             '/font/MuseoSans-700.otf',
             '/font/MuseoSans-900.otf',
-            'https://fonts.googleapis.com/icon?family=Material+Icons',
           ]
 
           cache.addAll(urlsToCache)
