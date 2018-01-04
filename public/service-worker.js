@@ -31,6 +31,8 @@ self.addEventListener('install', function (event) {
           const urlsToCache = [
             '/',
             '/index.html',
+            '/manifest.html',
+            '/favicon.ico',
             '/app.bundle.js',
             '/css/style.css',
             '/font/MuseoSans-100.otf',
