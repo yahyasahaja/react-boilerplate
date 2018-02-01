@@ -5,11 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev-server": "nodemon src/server/index.js --exec babel-node",
-    "dev-client": "webpack --progress --color --watch",
-    "build": "babel src/server -d dist && webpack -p",
-    "build-server": "babel src/server -d dist",
-    "build-client": "webpack -p",
+    "dev-server": "NODE_ENV=development nodemon src/server/index.js --exec babel-node",
+    "dev-client": "webpack --progress --color --watch --config webpack.dev.js",
+    "build": "npm run build-client && npm run build-server",
+    "build-server": "NODE_ENV=prodution babel src/server -d dist",
+    "build-client": "webpack -p --config webpack.prod.js",
     "start": "concurrently \"npm run dev-server\" \"npm run dev-client\" "
   },
   "repository": {
@@ -70,6 +70,7 @@
     "raw-loader": "^0.5.1",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
-    "webpack": "^2.7.0"
+    "webpack": "^2.7.0",
+    "webpack-merge": "^4.1.1"
   }
 }

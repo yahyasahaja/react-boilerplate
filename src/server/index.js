@@ -39,13 +39,24 @@ app.use(bodyParser.urlencoded({extended: true}))
 //COMPRESSION
 app.use(compression())
 
-//STATIC
-app.use(express.static(path.resolve(__dirname, './public')))
+if (process.env.NODE_ENV === 'development') {
+  //STATIC
+  app.use(express.static(path.resolve('./public')))
 
-//REACT
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, './public/index.html'))
-})
+  //REACT
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve('./public/index.html'))
+  })
+} else {
+  // set directory relative to the server location
+  //STATIC
+  app.use(express.static(path.resolve(__dirname, './public')))
+
+  //REACT
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, './public/index.html'))
+  })
+}
 
 //ERROR_HANDLER
 app.use((err, req, res, next) => {
