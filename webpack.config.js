@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const CompressionPlugin = require('compression-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 // const OfflinePlugin = require('offline-plugin');
 
 module.exports = {
@@ -8,7 +9,7 @@ module.exports = {
     app: './src/client/App.js',
   },
   output: {
-    path: path.resolve('public'),
+    path: path.resolve('dist/public'),
     filename: '[name].bundle.js'
   },
   resolve: {
@@ -63,6 +64,12 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')
     }),
+    new CopyWebpackPlugin([
+      {
+        from: path.resolve('public/'),
+        to: path.resolve('dist/public')
+      }
+    ]),
     new CompressionPlugin({
       asset: '[path].gz[query]',
       algorithm: 'gzip',

@@ -5,7 +5,7 @@ import React, { Component }  from 'react'
 export default class Home extends Component {
   render() {
     return (
-      <h1>Hi react!</h1>
+      <h1>Hi there!</h1>
     )
   }
 }

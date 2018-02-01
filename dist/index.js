@@ -22,22 +22,13 @@ var _compression2 = _interopRequireDefault(_compression);
 
 var _config = require('./config');
 
-var _events = require('./events');
-
-var _api = require('./router/api');
-
-var _api2 = _interopRequireDefault(_api);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //FIRST_CONFIG
-var app = (0, _express2.default)();
-
-//EVENTS
 // @flow
 //MODULES
-
-var port = process.env.PORT || 3000;
+var app = (0, _express2.default)();
+var port = process.env.PORT || _config.APP_PORT || 3000;
 
 //CONFIG
 if (process.env.NODE_ENV === 'production') {
@@ -60,22 +51,15 @@ app.use((0, _morgan2.default)(_config.LOG_MODE));
 app.use(_bodyParser2.default.json());
 app.use(_bodyParser2.default.urlencoded({ extended: true }));
 
-//DATABASE
-// import db from './db'
-
-//API
-
-app.use('/api', _api2.default);
-
 //COMPRESSION
 app.use((0, _compression2.default)());
 
 //STATIC
-app.use(_express2.default.static('./public'));
+app.use(_express2.default.static(_path2.default.resolve(__dirname, './public')));
 
 //REACT
 app.get('*', function (req, res) {
-  res.sendFile(_path2.default.resolve('./public/index.html'));
+  res.sendFile(_path2.default.resolve(__dirname, './public/index.html'));
 });
 
 //ERROR_HANDLER
@@ -88,9 +72,6 @@ app.use(function (err, req, res, next) {
 });
 
 //LISTEN TO PORT
-_events.events.on(_events.DB_CONNECTED, function () {
-  app.listen(port, function () {
-    return console.log('Server running at port ' + port);
-  });
+app.listen(port, function () {
+  return console.log('Server running at port ' + port);
 });
-_events.events.emit(_events.DB_CONNECTED);
