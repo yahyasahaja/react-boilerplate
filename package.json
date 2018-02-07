@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev-server": "NODE_ENV=development nodemon src/server/index.js --exec babel-node",
+    "dev-server": "NODE_ENV=development nodemon src/server/index.js --exec babel-node --watch src/server",
     "dev-client": "webpack --progress --color --watch --config webpack.dev.js",
     "build": "npm run build-client && npm run build-server",
     "build-server": "NODE_ENV=prodution babel src/server -d dist",
